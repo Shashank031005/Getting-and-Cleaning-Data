@@ -46,3 +46,11 @@ columnnames <- gsub("std", "StandardDeviation", columnnames)
 columnnames <- gsub("BodyBody", "Body", columnnames)
 #Change column names on data set
 colnames(SubjectActivity) <- columnnames
+#Create a second, independent tidy data set with the average of each variable
+#for each activity and each subject
+#Group by Subject and Activity, then summarise 
+SubjectActivityMeans <- SubjectActivity %>%
+                        group_by(Subject, Activity) %>%
+                        summarise_all(mean)
+#with write.table() using row.name=FALSE
+write.table(SubjectActivityMeans, "TidyData.txt",row.name=FALSE)
