@@ -23,3 +23,12 @@ colnames(X_train.txt) <- features.txt$V2
 dataset1 <- cbind(subject_test.txt, y_test.txt, X_test.txt)
 dataset2 <- cbind(subject_train.txt, y_train.txt, X_train.txt)
 dataset <- rbind(dataset1, dataset2)
+#Extract the data referring to the mean and standard deviation measurement
+#throughout the data set, using keywords
+Keep <- grepl("Subject|Activity|mean|std", colnames(dataset))
+SubjectActivity <- dataset[, Keep]
+
+#Use activity labels to replace the values within column 2
+SubjectActivity$Activity <- factor(SubjectActivity$Activity, 
+                          levels = activity_labels.txt[, 1],
+                          labels = activity_labels.txt[, 2])
