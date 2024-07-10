@@ -19,3 +19,7 @@ colnames(y_test.txt) <- "Activity"
 colnames(y_train.txt) <- "Activity"
 colnames(X_test.txt) <- features.txt$V2
 colnames(X_train.txt) <- features.txt$V2
+#Bind columns together to create one large data set using cbind and rbind
+dataset1 <- cbind(subject_test.txt, y_test.txt, X_test.txt)
+dataset2 <- cbind(subject_train.txt, y_train.txt, X_train.txt)
+dataset <- rbind(dataset1, dataset2)
