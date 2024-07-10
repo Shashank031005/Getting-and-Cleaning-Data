@@ -32,3 +32,17 @@ SubjectActivity <- dataset[, Keep]
 SubjectActivity$Activity <- factor(SubjectActivity$Activity, 
                           levels = activity_labels.txt[, 1],
                           labels = activity_labels.txt[, 2])
+#Retrieve names
+columnnames <- colnames(SubjectActivity)
+columnnames <- gsub("[\\(\\)-]", "", columnnames)
+columnnames <- gsub("mean", "Mean", columnnames)
+columnnames <- gsub("^f", "frequencyDomain", columnnames)
+columnnames <- gsub("^t", "timeDomain", columnnames)
+columnnames <- gsub("Acc", "Accelerometer", columnnames)
+columnnames <- gsub("Gyro", "Gyroscope", columnnames)
+columnnames <- gsub("Mag", "Magnitude", columnnames)
+columnnames <- gsub("Freq", "Frequency", columnnames)
+columnnames <- gsub("std", "StandardDeviation", columnnames)
+columnnames <- gsub("BodyBody", "Body", columnnames)
+#Change column names on data set
+colnames(SubjectActivity) <- columnnames
